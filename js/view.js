@@ -1,15 +1,15 @@
-// url - https://newsapi.org/v2/top-headlines?' +
-// 'sources=bbc-news&' +
-// 'apiKey=8363dfba011f4cb99c2b54ae06629cca'  
-Data = {};
 class view {
     //Helper function to setup
     constructor(controller) {
         this.cntrl = controller;
+        this.init();
+    }
+    
+    init = () => {
         this.setupHeader();
         this.setupFooter();
         this.setupMain();
-
+        this.cntrl.removeLoader();
     }
     //setting up the footer
     setupFooter = () => {
@@ -78,7 +78,7 @@ class view {
         this.showAllChannels(Content_Div);
     }
     // creating the elements of main content
-    createInsideDiv = (parent_node,key, v) => {
+    createInsideDiv = (parent_node,key,v) => {
 
 
         var inside_div = this.createElement("div", "inside-div", "");
@@ -98,7 +98,12 @@ class view {
         inside_div.appendChild(p);
 
         let lorem = this.createElement("p", "lorem", "");
-        lorem.innerHTML = v.contentText;
+
+        if(v.contentText != null){
+            lorem.innerHTML = v.contentText;
+        }else{
+            lorem.innerHTML = v.descriptionText;
+        }
         lorem.appendChild(this.createElement("br", "", ""));
         inside_div.appendChild(lorem);
 
@@ -163,7 +168,6 @@ class view {
 
         let news_channel = option;
         window.Content_Div.innerHTML = "";
-        console.log("hooo");
         const arr = (this.cntrl.getAll()).get(news_channel);
         for(var v of arr){
             this.createInsideDiv(window.Content_Div,news_channel,v);
@@ -219,10 +223,14 @@ class view {
     }
     //helper function to show the popup on button click
     showPopUP = (key,v) => {
-        //console.log(key);
-        let full_news = v.contentText;
+        
+        if(v.contentText != null){
+            var full_news = v.contentText;
+        }else{
+            var full_news = v.descriptionText;
+        }
         document.getElementById("modal-para").innerHTML = full_news;
-        document.getElementById("modal-header").innerHTML =key;
+        document.getElementById("modal-header").innerHTML = key;
         document.getElementById("myModal").style.display = "block";
     }
 
@@ -243,3 +251,8 @@ class view {
         return element;
     }
 }
+
+
+
+
+

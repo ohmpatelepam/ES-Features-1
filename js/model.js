@@ -2,9 +2,14 @@ class model {
 
     constructor() {
         this.data = new Map();
+        this.init();    
+    }
+    init = () => {
+
         this.fetchData();
+        this.initializeLoader();
         setTimeout(() => {
-            new controller(this)
+            new controller(this);
         }, 500);
     }
 
@@ -25,42 +30,30 @@ class model {
             temp.setAuthor(element.author);
             temp.setImageurl(element.urlToImage);
             temp.setContent(element.content);
+            temp.setDescription(element.description);
            
-            if(this.data.has(temp.source)){
-                let arr = this.data.get(temp.source);
+            if(this.data.has(element.source.name)){
+                let arr = this.data.get(element.source.name);
                 arr.push(temp);
-                this.data.set(temp.source,arr);
+                this.data.set(element.source.name,arr);
             }else{
-                this.data.set(temp.source,[temp]);
+                this.data.set(element.source.name,[temp]);
             }
           
         });
-        console.log(this.data);
-       
     }
 
-    getSource = (name) => {
-       
-        return this.data[name].sourceText;
+    initializeLoader = () =>{
+        let body = document.getElementById("main_content");
+        let loaderDiv = document.createElement("div");
+        loaderDiv.id = "loader";
+        body.appendChild(loaderDiv);
     }
 
-    getDate = (name) => {
-        return this.data[name].dateText;
+    removeLoader = () => {
+        document.getElementById("loader").style.display = "none";
     }
-
-    getAuthor = (name) => {
-
-        return this.data[name].authorText;
-    }
-
-    getImageURL = (name) => {
-        return this.data[name].imageurlText;
-    }
-
-    getContent = (name) => {
-       
-        return this.data[name].contentText;
-    }
+    
 
     getAll = () => {
         return this.data;

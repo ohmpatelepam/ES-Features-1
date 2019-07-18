@@ -7,44 +7,42 @@ class object {
         this.authorText = "";
         this.imageurlText = "";
         this.contentText = "";
+        this.descriptionText = ""
 
     }
 
     setSource = (source1) => {
         this.sourceText = source1;
     }
-    get source() {
-        return this.sourceText;
-    }
+    
 
     setDate = (date) => {
         let newdate = this.formatDate(date);
         this.dateText = newdate;
     }
-    get date() {
-        return this.dateText;
-    }
+    
 
     setAuthor = (category) => {
         this.authorText = category;
     }
-    get author() {
-        return this.authorText;
-    }
+   
 
     setImageurl = (url) => {
         this.imageurlText = url;
     }
-    get imageurl() {
-        return this.imageurlText;
-    }
+   
 
     setContent = (content) => {
         this.contentText = content;
     }
-    get content() {
-        return this.contentText;
+   
+
+    setDescription = (description) => {
+        this.descriptionText = description;
     }
+
+   
+    
     formatDate = (date) => {
         const tempDate = new Date(date);
         const month = tempDate.toLocaleString('default', {
