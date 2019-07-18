@@ -1,58 +1,51 @@
 class object {
 
-    constructor() {
+	constructor() {
 
-        this.sourceText = "";
-        this.dateText = "";
-        this.authorText = "";
-        this.imageurlText = "";
-        this.contentText = "";
+		this.sourceText = "";
+		this.dateText = "";
+		this.authorText = "";
+		this.imageurlText = "";
+		this.contentText = "";
+		this.descriptionText = ""
 
-    }
+	}
 
-    setSource = (source1) => {
-        this.sourceText = source1;
-    }
-    get source() {
-        return this.sourceText;
-    }
+	setSource = (source1) => {
+		this.sourceText = source1;
+	}
 
-    setDate = (date) => {
-        let newdate = this.formatDate(date);
-        this.dateText = newdate;
-    }
-    get date() {
-        return this.dateText;
-    }
 
-    setAuthor = (category) => {
-        this.authorText = category;
-    }
-    get author() {
-        return this.authorText;
-    }
+	setDate = (date) => {
+		let newdate = this.formatDate(date);
+		this.dateText = newdate;
+	}
 
-    setImageurl = (url) => {
-        this.imageurlText = url;
-    }
-    get imageurl() {
-        return this.imageurlText;
-    }
 
-    setContent = (content) => {
-        this.contentText = content;
-    }
-    get content() {
-        return this.contentText;
-    }
-    formatDate = (date) => {
-        const tempDate = new Date(date);
-        const month = tempDate.toLocaleString('default', {
-            month: 'long'
-        })
-        const year = tempDate.getFullYear();
-        const day = tempDate.getDay();
+	setAuthor = (category) => {
+		this.authorText = category;
+	}
 
-        return `${day} ${month} ${year}`;
-    }
+	setImageurl = (url) => {
+		this.imageurlText = url;
+	}
+
+	setContent = (content) => {
+		this.contentText = content;
+	}
+
+	setDescription = (description) => {
+		this.descriptionText = description;
+	}
+
+	formatDate = (date) => {
+		const tempDate = new Date(date);
+		const month = tempDate.toLocaleString('default', {
+			month: 'long'
+		})
+		const year = tempDate.getFullYear();
+		const day = tempDate.getDay();
+
+		return `${day} ${month} ${year}`;
+	}
 }
