@@ -1,61 +1,72 @@
 class model {
 
-	constructor() {
-		this.data = new Map();
-		this.fetchData();
-		this.initializeLoader();
-		setTimeout(() => {
-			new controller(this);
-		}, 500);
-	}
+    constructor() {
+        this.data = new Map();
+        this.fetchData();
+        setTimeout(() => {
+            new controller(this)
+        }, 500);
+    }
 
-	fetchData = () => {
-		fetch('https://newsapi.org/v2/top-headlines?' +
-			'country=us&' +
-			'apiKey=8363dfba011f4cb99c2b54ae06629cca').then(response => response.json()).then(jsonres => this.set(jsonres));
+    fetchData = () => {
+        fetch('https://newsapi.org/v2/top-headlines?' +
+            'country=us&' +
+            'apiKey=8363dfba011f4cb99c2b54ae06629cca').then(response => response.json()).then(jsonres => this.set(jsonres));
 
-	}
+    }
 
-	set = (data) => {
-
-
-		data.articles.forEach(element => {
-			const temp = new object();
-			temp.setSource(element.source.name);
-			temp.setDate(element.publishedAt);
-			temp.setAuthor(element.author);
-			temp.setImageurl(element.urlToImage);
-			temp.setContent(element.content);
-			temp.setDescription(element.description);
-
-			if (this.data.has(element.source.name)) {
-				let arr = this.data.get(element.source.name);
-				arr.push(temp);
-				this.data.set(element.source.name, arr);
-			} else {
-				this.data.set(element.source.name, [temp]);
-			}
-
-		});
-	}
-
-	initializeLoader = () => {
-		let body = document.getElementById("main_content");
-		let loaderDiv = document.createElement("div");
-		loaderDiv.id = "loader";
-		body.appendChild(loaderDiv);
-	}
-
-	removeLoader = () => {
-		document.getElementById("loader").style.display = "none";
-	}
+    set = (data) => {
 
 
-	getAll = () => {
-		return this.data;
-	}
+        data.articles.forEach(element => {
+            const temp = new object();
+            temp.setSource(element.source.name);
+            temp.setDate(element.publishedAt);
+            temp.setAuthor(element.author);
+            temp.setImageurl(element.urlToImage);
+            temp.setContent(element.content);
+           
+            if(this.data.has(temp.source)){
+                let arr = this.data.get(temp.source);
+                arr.push(temp);
+                this.data.set(temp.source,arr);
+            }else{
+                this.data.set(temp.source,[temp]);
+            }
+          
+        });
+        console.log(this.data);
+       
+    }
 
-	getAllKeys = () => {
-		return this.data.keys();
-	}
+    getSource = (name) => {
+       
+        return this.data[name].sourceText;
+    }
+
+    getDate = (name) => {
+        return this.data[name].dateText;
+    }
+
+    getAuthor = (name) => {
+
+        return this.data[name].authorText;
+    }
+
+    getImageURL = (name) => {
+        return this.data[name].imageurlText;
+    }
+
+    getContent = (name) => {
+       
+        return this.data[name].contentText;
+    }
+
+    getAll = () => {
+        return this.data;
+    }
+
+    getAllKeys = () => {
+        return this.data.keys();
+    }
 }

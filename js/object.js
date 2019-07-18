@@ -1,51 +1,58 @@
 class object {
 
-	constructor() {
+    constructor() {
 
-		this.sourceText = "";
-		this.dateText = "";
-		this.authorText = "";
-		this.imageurlText = "";
-		this.contentText = "";
-		this.descriptionText = ""
+        this.sourceText = "";
+        this.dateText = "";
+        this.authorText = "";
+        this.imageurlText = "";
+        this.contentText = "";
 
-	}
+    }
 
-	setSource = (source1) => {
-		this.sourceText = source1;
-	}
+    setSource = (source1) => {
+        this.sourceText = source1;
+    }
+    get source() {
+        return this.sourceText;
+    }
 
+    setDate = (date) => {
+        let newdate = this.formatDate(date);
+        this.dateText = newdate;
+    }
+    get date() {
+        return this.dateText;
+    }
 
-	setDate = (date) => {
-		let newdate = this.formatDate(date);
-		this.dateText = newdate;
-	}
+    setAuthor = (category) => {
+        this.authorText = category;
+    }
+    get author() {
+        return this.authorText;
+    }
 
+    setImageurl = (url) => {
+        this.imageurlText = url;
+    }
+    get imageurl() {
+        return this.imageurlText;
+    }
 
-	setAuthor = (category) => {
-		this.authorText = category;
-	}
+    setContent = (content) => {
+        this.contentText = content;
+    }
+    get content() {
+        return this.contentText;
+    }
+    formatDate = (date) => {
+        const tempDate = new Date(date);
+        const month = tempDate.toLocaleString('default', {
+            month: 'long'
+        })
+        const year = tempDate.getFullYear();
+        const day = tempDate.getDay();
 
-	setImageurl = (url) => {
-		this.imageurlText = url;
-	}
-
-	setContent = (content) => {
-		this.contentText = content;
-	}
-
-	setDescription = (description) => {
-		this.descriptionText = description;
-	}
-
-	formatDate = (date) => {
-		const tempDate = new Date(date);
-		const month = tempDate.toLocaleString('default', {
-			month: 'long'
-		})
-		const year = tempDate.getFullYear();
-		const day = tempDate.getDay();
-
-		return `${day} ${month} ${year}`;
-	}
+        return `${day} ${month} ${year}`;
+    }
 }
