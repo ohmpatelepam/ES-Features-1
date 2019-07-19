@@ -42,7 +42,7 @@ export class model {
             }
           
         });
-       // return Promise.resolve(1);
+       
     }
 
     initializeLoader = () =>{
