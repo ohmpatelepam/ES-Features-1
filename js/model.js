@@ -4,6 +4,7 @@ class model {
         this.data = new Map();
         this.init();    
     }
+    
     init = () => {
 
         this.fetchData();
@@ -33,8 +34,7 @@ class model {
             temp.setDescription(element.description);
            
             if(this.data.has(element.source.name)){
-                let arr = this.data.get(element.source.name);
-                arr.push(temp);
+                const arr = [...this.data.get(element.source.name),temp];
                 this.data.set(element.source.name,arr);
             }else{
                 this.data.set(element.source.name,[temp]);
