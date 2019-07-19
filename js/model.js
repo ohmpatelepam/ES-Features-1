@@ -11,7 +11,7 @@ class model {
         this.initializeLoader();
         setTimeout(() => {
             new controller(this);
-        }, 500);
+        }, 1200);
     }
 
     fetchData = () => {
