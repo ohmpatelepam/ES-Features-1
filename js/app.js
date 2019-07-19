@@ -1,4 +1,5 @@
-class object {
+import {model} from './model.js';
+export class object {
 
     constructor() {
 
@@ -54,3 +55,4 @@ class object {
         return `${day} ${month} ${year}`;
     }
 }
+new model();

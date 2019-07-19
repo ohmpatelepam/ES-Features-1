@@ -1,4 +1,4 @@
-class view {
+export class view {
     //Helper function to setup
     constructor(controller) {
         this.cntrl = controller;

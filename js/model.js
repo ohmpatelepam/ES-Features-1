@@ -1,4 +1,6 @@
-class model {
+import {controller} from './controller.js';
+import {object} from './app.js';
+export class model {
 
     constructor() {
         this.data = new Map();
@@ -6,19 +8,18 @@ class model {
     }
     
     init = () => {
-
         this.fetchData();
-        this.initializeLoader();
-        setTimeout(() => {
-            new controller(this);
-        }, 1200);
     }
 
-    fetchData = () => {
-        fetch('https://newsapi.org/v2/top-headlines?' +
-            'country=us&' +
-            'apiKey=8363dfba011f4cb99c2b54ae06629cca').then(response => response.json()).then(jsonres => this.set(jsonres));
+    async fetchData(){
 
+        this.initializeLoader();
+        let response =  await fetch('https://newsapi.org/v2/top-headlines?' +
+            'country=us&' +
+            'apiKey=8363dfba011f4cb99c2b54ae06629cca').then(response => response.json()).then(jsonres => this.set(jsonres)).catch(() => {
+                alert("Please reload the page. Unable to fetch data");
+            });
+        new controller(this);
     }
 
     set = (data) => {
@@ -41,7 +42,7 @@ class model {
             }
           
         });
-        console.log(this.data);
+        return Promise.resolve(1);
     }
 
     initializeLoader = () =>{

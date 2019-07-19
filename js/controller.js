@@ -1,4 +1,5 @@
-class controller {
+import {view} from './view.js';
+export class controller {
 
     constructor(modelObj) {
         this.model = modelObj;
