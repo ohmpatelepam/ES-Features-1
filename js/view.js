@@ -56,7 +56,6 @@ class view {
         newList.appendChild(new Option("All", "all"));
         const data = this.cntrl.getAllKeys();
         for (var key of data) {
-           
             newList.appendChild(new Option(key, key));
         }
         aside.appendChild(newList);
@@ -98,12 +97,7 @@ class view {
         inside_div.appendChild(p);
 
         let lorem = this.createElement("p", "lorem", "");
-
-        if(v.contentText != null){
-            lorem.innerHTML = v.contentText;
-        }else{
-            lorem.innerHTML = v.descriptionText;
-        }
+        lorem.innerHTML = (v.contentText != null) ? (v.contentText) : (v.descriptionText);
         lorem.appendChild(this.createElement("br", "", ""));
         inside_div.appendChild(lorem);
 
@@ -146,8 +140,8 @@ class view {
         modal_body.appendChild(para);
 
         window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
+           if(event.target == modal) {  
+               modal.style.display ="none";
             }
         }
 
@@ -176,15 +170,10 @@ class view {
 
     //Implemented dropdown
     setupdropdown = () => {
-
         let e = document.getElementById("dropdown");
         let option = e.options[e.selectedIndex].value;
-       // console.log(option);
-        if (option != "all") {
-            this.showSpecificChannel(option);
-        } else {
-            this.showAllChannels(window.Content_Div);
-        }
+        
+        (option != "all") ? (this.showSpecificChannel(option)): (this.showAllChannels(window.Content_Div));
     }
 
     //helper function to validate the email
@@ -224,11 +213,7 @@ class view {
     //helper function to show the popup on button click
     showPopUP = (key,v) => {
         
-        if(v.contentText != null){
-            var full_news = v.contentText;
-        }else{
-            var full_news = v.descriptionText;
-        }
+        var full_news = (v.contentText != null) ? (v.contentText) : (v.descriptionText);
         document.getElementById("modal-para").innerHTML = full_news;
         document.getElementById("modal-header").innerHTML = key;
         document.getElementById("myModal").style.display = "block";
@@ -242,12 +227,8 @@ class view {
     createElement = (type, classname, id) => {
 
         var element = document.createElement(type);
-        if (classname != "") {
-            element.className = classname
-        }
-        if (id != "") {
-            element.id = id;
-        }
+        element.className = (classname != "") ? (classname) : ("");
+        element.id = (id != "")? (id) : ("");
         return element;
     }
 }

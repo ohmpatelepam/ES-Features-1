@@ -41,6 +41,7 @@ class model {
             }
           
         });
+        console.log(this.data);
     }
 
     initializeLoader = () =>{
