@@ -18,11 +18,7 @@ export class model {
             'country=us&' +
             'apiKey=8363dfba011f4cb99c2b54ae06629cca').then(response => response.json()).then(jsonres => this.set(jsonres)).catch(() => {
                 alert("Please reload the page. Unable to fetch data");
-            });
-<<<<<<< HEAD
-        
-=======
->>>>>>> d69fa51586d6c9c77e0af5a1cf49df1101b4f017
+            });    
         new controller(this);
     }
 
