@@ -84,7 +84,11 @@ export class view {
         parent_node.appendChild(inside_div);
 
         let img = this.createElement("img", "img", "");
+<<<<<<< HEAD
         img.src = (v.imageurlText == null) ? ("assets/errorimage.jpg") : (v.imageurlText);
+=======
+        img.src = (v.imageurlText == null) ? ("js/errorimage.jpg") : (v.imageurlText);
+>>>>>>> d69fa51586d6c9c77e0af5a1cf49df1101b4f017
         inside_div.appendChild(img);
 
         let h1 = this.createElement("h1", "title", "news_title");
