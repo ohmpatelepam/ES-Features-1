@@ -19,6 +19,7 @@ export class model {
             'apiKey=8363dfba011f4cb99c2b54ae06629cca').then(response => response.json()).then(jsonres => this.set(jsonres)).catch(() => {
                 alert("Please reload the page. Unable to fetch data");
             });
+        
         new controller(this);
     }
 
