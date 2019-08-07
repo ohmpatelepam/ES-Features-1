@@ -55,7 +55,6 @@ export class view {
         newList.addEventListener("change", this.setupdropdown);
         newList.appendChild(new Option("All", "all"));
         const data = this.cntrl.getAllKeys();
-        
         for (var key of data) {
             newList.appendChild(new Option(key, key));
         }
@@ -63,14 +62,12 @@ export class view {
 
         let error_text = this.createElement("p", "", "error_text");
         error_text.innerHTML = "";
+        error_text.style.backgroundColor = "white";
+        error_text.style.fontSize = "12px";
+        error_text.style.padding = "8px";
+        error_text.style.visibility = "hidden";
+        error_text.style.borderRadius = "10px";
         aside.appendChild(error_text);
-
-        let headlines = this.createElement("button","","head-lines");
-        headlines.innerHTML = "Headlines";
-        headlines.onclick = () => {
-            this.cntrl.loadHeadlineFile();
-        }
-        aside.appendChild(headlines);
     }
     //creating main content of each cell
     createContentDiv = (parent_node) => {
@@ -197,7 +194,7 @@ export class view {
                 error_text_field.style.backgroundColor = "yellow";
                 error_text_field.style.visibility = "visible";
                 document.getElementById("input").value = ""
-                setTimeout(this.Clear, 1000);
+                setTimeout(Clear, 1000);
                 return
             }
             emails.push(email);
@@ -206,12 +203,12 @@ export class view {
             error_text_field.style.backgroundColor = "Green";
             error_text_field.style.visibility = "visible";
             document.getElementById("input").value = "";
-            setTimeout(this.Clear, 1000);
+            setTimeout(Clear, 1000);
             return;
         }
         error_text_field.innerHTML = "Email Wrong";
         error_text_field.style.backgroundColor = "red";
-        setTimeout(this.Clear, 1000);
+        setTimeout(Clear, 1000);
     }
     //helper function to show the popup on button click
     showPopUP = (key,v) => {
@@ -230,8 +227,8 @@ export class view {
     createElement = (type, classname, id) => {
 
         var element = document.createElement(type);
-        element.className = classname || "";
-        element.id = id || "";
+        element.className = (classname != "") ? (classname) : ("");
+        element.id = (id != "")? (id) : ("");
         return element;
     }
 }

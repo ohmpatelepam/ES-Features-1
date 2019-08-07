@@ -11,15 +11,15 @@ export class model {
         this.fetchData();
     }
 
-    async fetchData(){
+    fetchData = async function(){
 
         this.initializeLoader();
         let response =  await fetch('https://newsapi.org/v2/top-headlines?' +
             'country=us&' +
-            'apiKey=8363dfba011f4cb99c2b54ae06629cca').then(response => response.json()).then(jsonres => this.set(jsonres)).catch(() => {
+            'apiKey=d4e03df5989c4e4a998e4fb2fe632d48').then(response => response.json()).then(jsonres => this.set(jsonres)).catch(() => {
                 alert("Please reload the page. Unable to fetch data");
             });    
-        new controller(this);
+       new controller(this);
     }
 
     set = (data) => {
