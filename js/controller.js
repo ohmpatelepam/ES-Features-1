@@ -1,4 +1,5 @@
 import {view} from './view.js';
+import {headline} from './headline.js'
 export class controller {
 
     constructor(modelObj) {
@@ -13,6 +14,9 @@ export class controller {
     }
     removeLoader = () =>{
         this.model.removeLoader()
+    }
+    loadHeadlineFile = () => {
+        loadScript('/path/to/search-script.js');
     }
 
 
